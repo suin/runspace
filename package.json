@@ -1,6 +1,6 @@
 {
   "name": "@suin/runspace",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Isolated execution context for Node.js.",
   "keywords": [],
   "homepage": "https://github.com/suin/runspace#readme",
