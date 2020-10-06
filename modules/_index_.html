@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;index&quot; | @suin/runspace - v1.0.2</title>
-	<meta name="description" content="Documentation for @suin/runspace - v1.0.2">
+	<title>&quot;index&quot; | @suin/runspace - v1.1.0</title>
+	<meta name="description" content="Documentation for @suin/runspace - v1.1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@suin/runspace - v1.0.2</a>
+					<a href="../index.html" class="title">@suin/runspace - v1.1.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -89,6 +89,7 @@
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_index_.html#errorlistener" class="tsd-kind-icon">Error<wbr>Listener</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_index_.html#messagelistener" class="tsd-kind-icon">Message<wbr>Listener</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_index_.html#rejectionlistener" class="tsd-kind-icon">Rejection<wbr>Listener</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_index_.html#waitmessagepredicate" class="tsd-kind-icon">Wait<wbr>Message<wbr>Predicate</a></li>
 							</ul>
 						</section>
 					</div>
@@ -115,7 +116,7 @@
 					<div class="tsd-signature tsd-kind-icon">Error<wbr>Listener<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/index.ts#L44">index.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/index.ts#L50">index.ts:50</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -146,7 +147,7 @@
 					<div class="tsd-signature tsd-kind-icon">Message<wbr>Listener<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/index.ts#L43">index.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/index.ts#L49">index.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -177,7 +178,7 @@
 					<div class="tsd-signature tsd-kind-icon">Rejection<wbr>Listener<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/index.ts#L45">index.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/index.ts#L51">index.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -196,6 +197,37 @@
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="waitmessagepredicate" class="tsd-anchor"></a>
+					<h3>Wait<wbr>Message<wbr>Predicate</h3>
+					<div class="tsd-signature tsd-kind-icon">Wait<wbr>Message<wbr>Predicate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/index.ts#L48">index.ts:48</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>message: <span class="tsd-signature-type">unknown</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -255,6 +287,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="_index_.html#rejectionlistener" class="tsd-kind-icon">Rejection<wbr>Listener</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="_index_.html#waitmessagepredicate" class="tsd-kind-icon">Wait<wbr>Message<wbr>Predicate</a>
 					</li>
 				</ul>
 			</nav>

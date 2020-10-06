@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ChildProcessSpace | @suin/runspace - v1.0.2</title>
-	<meta name="description" content="Documentation for @suin/runspace - v1.0.2">
+	<title>ChildProcessSpace | @suin/runspace - v1.1.0</title>
+	<meta name="description" content="Documentation for @suin/runspace - v1.1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@suin/runspace - v1.0.2</a>
+					<a href="../index.html" class="title">@suin/runspace - v1.1.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -116,6 +116,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_childprocess_.childprocessspace.html#send" class="tsd-kind-icon">send</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_childprocess_.childprocessspace.html#start" class="tsd-kind-icon">start</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_childprocess_.childprocessspace.html#stop" class="tsd-kind-icon">stop</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_childprocess_.childprocessspace.html#waitmessage" class="tsd-kind-icon">wait<wbr>Message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_childprocess_.childprocessspace.html#waitstop" class="tsd-kind-icon">wait<wbr>Stop</a></li>
 							</ul>
 						</section>
@@ -134,7 +135,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L19">childProcess.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L20">childProcess.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -158,10 +159,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_events" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #events</h3>
-					<div class="tsd-signature tsd-kind-icon">#events<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TypedEventEmitter</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>error<span class="tsd-signature-symbol">: </span><a href="../modules/_index_.html#errorlistener" class="tsd-signature-type">ErrorListener</a><span class="tsd-signature-symbol">; </span>message<span class="tsd-signature-symbol">: </span><a href="../modules/_index_.html#messagelistener" class="tsd-signature-type">MessageListener</a><span class="tsd-signature-symbol">; </span>rejection<span class="tsd-signature-symbol">: </span><a href="../modules/_index_.html#rejectionlistener" class="tsd-signature-type">RejectionListener</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = createEventEmitter()</span></div>
+					<div class="tsd-signature tsd-kind-icon">#events<span class="tsd-signature-symbol">:</span> <a href="../modules/_eventemitter_.html#spaceeventemitter" class="tsd-signature-type">SpaceEventEmitter</a><span class="tsd-signature-symbol"> = createEventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L18">childProcess.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L19">childProcess.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">#filename<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L17">childProcess.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L18">childProcess.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -181,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">#worker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ChildProcess</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L19">childProcess.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L20">childProcess.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -198,7 +199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L25">childProcess.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L26">childProcess.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -218,7 +219,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L64">childProcess.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L72">childProcess.ts:72</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -241,7 +242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L72">childProcess.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L80">childProcess.ts:80</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -258,22 +259,61 @@
 					<a name="on" class="tsd-anchor"></a>
 					<h3>on</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"message"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"error"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"rejection"</span>, listener<span class="tsd-signature-symbol">: </span><a href="../modules/_index_.html#messagelistener" class="tsd-signature-type">MessageListener</a><span class="tsd-signature-symbol"> | </span><a href="../modules/_index_.html#errorlistener" class="tsd-signature-type">ErrorListener</a><span class="tsd-signature-symbol"> | </span><a href="../modules/_index_.html#rejectionlistener" class="tsd-signature-type">RejectionListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"message"</span>, messageListener<span class="tsd-signature-symbol">: </span><a href="../modules/_index_.html#messagelistener" class="tsd-signature-type">MessageListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"error"</span>, errorListener<span class="tsd-signature-symbol">: </span><a href="../modules/_index_.html#errorlistener" class="tsd-signature-type">ErrorListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"rejection"</span>, rejectionListener<span class="tsd-signature-symbol">: </span><a href="../modules/_index_.html#rejectionlistener" class="tsd-signature-type">RejectionListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L29">childProcess.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L30">childProcess.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <span class="tsd-signature-type">"message"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"error"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"rejection"</span></h5>
+									<h5>type: <span class="tsd-signature-type">"message"</span></h5>
 								</li>
 								<li>
-									<h5>listener: <a href="../modules/_index_.html#messagelistener" class="tsd-signature-type">MessageListener</a><span class="tsd-signature-symbol"> | </span><a href="../modules/_index_.html#errorlistener" class="tsd-signature-type">ErrorListener</a><span class="tsd-signature-symbol"> | </span><a href="../modules/_index_.html#rejectionlistener" class="tsd-signature-type">RejectionListener</a></h5>
+									<h5>messageListener: <a href="../modules/_index_.html#messagelistener" class="tsd-signature-type">MessageListener</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#on">on</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L31">childProcess.ts:31</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">"error"</span></h5>
+								</li>
+								<li>
+									<h5>errorListener: <a href="../modules/_index_.html#errorlistener" class="tsd-signature-type">ErrorListener</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#on">on</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L32">childProcess.ts:32</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">"rejection"</span></h5>
+								</li>
+								<li>
+									<h5>rejectionListener: <a href="../modules/_index_.html#rejectionlistener" class="tsd-signature-type">RejectionListener</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -291,7 +331,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#send">send</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L60">childProcess.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L64">childProcess.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -315,7 +355,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#start">start</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L37">childProcess.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L41">childProcess.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -333,9 +373,33 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#stop">stop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L46">childProcess.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L50">childProcess.ts:50</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="waitmessage" class="tsd-anchor"></a>
+					<h3>wait<wbr>Message</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">wait<wbr>Message<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../modules/_index_.html#waitmessagepredicate" class="tsd-signature-type">WaitMessagePredicate</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#waitmessage">waitMessage</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L68">childProcess.ts:68</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>predicate: <a href="../modules/_index_.html#waitmessagepredicate" class="tsd-signature-type">WaitMessagePredicate</a></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -351,7 +415,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#waitstop">waitStop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.0.2/childProcess.ts#L54">childProcess.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v1.1.0/childProcess.ts#L58">childProcess.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -431,6 +495,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_childprocess_.childprocessspace.html#stop" class="tsd-kind-icon">stop</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_childprocess_.childprocessspace.html#waitmessage" class="tsd-kind-icon">wait<wbr>Message</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_childprocess_.childprocessspace.html#waitstop" class="tsd-kind-icon">wait<wbr>Stop</a>
