@@ -1,5 +1,9 @@
 export const echoMessage = "./fixtures/echoMessage.js";
+export const evaluatesMessage = "./fixtures/evaluatesMessage.js";
 export const sendsHello = "./fixtures/sendsHello.js";
+export const sendsHelloIn500milliseconds =
+  "./fixtures/sendsHelloIn500milliseconds.js";
+export const sendsOneTwoThree = "./fixtures/sendsOneTwoThree.js";
 export const stopsImmediately = "./fixtures/stopsImmediately.js";
 export const stopsIn500milliseconds = "./fixtures/stopsIn500milliseconds.js";
 export const stopsNever = "./fixtures/stopsNever.js";

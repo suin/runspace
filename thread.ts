@@ -1,12 +1,13 @@
 import { isObject } from "@suin/is-object";
 import path from "path";
 import { Worker } from "worker_threads";
-import { createEventEmitter } from "./eventEmitter";
+import { createEventEmitter, waitMessage } from "./eventEmitter";
 import {
   ErrorListener,
   MessageListener,
   RejectionListener,
   Space,
+  WaitMessagePredicate,
 } from "./index";
 import {
   isSystemMessageContainer,
@@ -68,6 +69,10 @@ export class ThreadSpace implements Space {
 
   send(message: unknown): void {
     this.#worker?.postMessage(message);
+  }
+
+  waitMessage(predicate: WaitMessagePredicate): Promise<void> {
+    return waitMessage(this.#events, predicate);
   }
 
   private handleMessage(message: unknown): void {

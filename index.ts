@@ -29,6 +29,11 @@ export interface Space {
   send(message: unknown): void;
 
   /**
+   * Returns a promise object that resolves when the given predicate returns true.
+   */
+  waitMessage(predicate: WaitMessagePredicate): Promise<void>;
+
+  /**
    * The `message` event is emitted when the program inside this space sends a message via `process.send()`.
    *
    * The `error` event is emitted when the program inside this space throws an Error.
@@ -40,6 +45,7 @@ export interface Space {
   on(type: "rejection", rejectionListener: RejectionListener): this;
 }
 
+export type WaitMessagePredicate = (message: unknown) => boolean;
 export type MessageListener = (message: unknown) => void;
 export type ErrorListener = (error: unknown) => void;
 export type RejectionListener = (reason: unknown) => void;

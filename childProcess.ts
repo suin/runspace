@@ -1,12 +1,13 @@
 import { isObject } from "@suin/is-object";
 import { ChildProcess, fork, Serializable } from "child_process";
 import path from "path";
-import { createEventEmitter } from "./eventEmitter";
+import { createEventEmitter, waitMessage } from "./eventEmitter";
 import {
   ErrorListener,
   MessageListener,
   RejectionListener,
   Space,
+  WaitMessagePredicate,
 } from "./index";
 import {
   isSystemMessageContainer,
@@ -26,6 +27,9 @@ export class ChildProcessSpace implements Space {
     return this.#worker !== undefined;
   }
 
+  on(type: "message", messageListener: MessageListener): this;
+  on(type: "error", errorListener: ErrorListener): this;
+  on(type: "rejection", rejectionListener: RejectionListener): this;
   on(
     type: "message" | "error" | "rejection",
     listener: MessageListener | ErrorListener | RejectionListener
@@ -59,6 +63,10 @@ export class ChildProcessSpace implements Space {
 
   send(message: unknown): void {
     this.#worker?.send(message as Serializable);
+  }
+
+  waitMessage(predicate: WaitMessagePredicate): Promise<void> {
+    return waitMessage(this.#events, predicate);
   }
 
   private handleMessage(message: Serializable): void {

@@ -136,6 +136,52 @@ describe.each(types)("Space(%s)", (type, options) => {
     });
   });
 
+  describe("waitMessage", () => {
+    it("waits until a message that the predicate returns true", async () => {
+      let messageReceived = false;
+      const space = createSpace(
+        fixtures.sendsHelloIn500milliseconds,
+        options
+      ).on("message", () => void (messageReceived = true));
+      await space.start();
+      await space.waitMessage((message) => message === "Hello");
+      await space.stop();
+      expect(messageReceived).toBe(true);
+    });
+
+    it("returns Promise<void>", async () => {
+      const space = createSpace(fixtures.sendsHello, options);
+      await space.start();
+      const result = await space.waitMessage((message) => message === "Hello");
+      expect(result).toBe(undefined);
+    });
+
+    it("can wait some massages concurrently", async () => {
+      let receivedMessageCount = 0;
+      const space = createSpace(fixtures.sendsOneTwoThree, options);
+      space.on("message", () => void receivedMessageCount++);
+      await space.start();
+      await Promise.all([
+        space.waitMessage((message) => message === 1),
+        space.waitMessage((message) => message === 2),
+        space.waitMessage((message) => message === 3),
+      ]);
+      expect(receivedMessageCount).toBe(3);
+    });
+
+    it("can be used for request-response communication", async () => {
+      const space = createSpace(fixtures.evaluatesMessage, options);
+      await space.start();
+      space.send(`1 + 1`);
+      await space.waitMessage((result) => result === 2);
+      space.send(`1 + 2`);
+      await space.waitMessage((result) => result === 3);
+      space.send(`1 + 3`);
+      await space.waitMessage((result) => result === 4);
+      await space.stop();
+    });
+  });
+
   describe("event: message", () => {
     it("is fired when the program sends a message", async (end) => {
       const space = createSpace(fixtures.sendsHello, options);
