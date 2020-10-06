@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/suin/runspace/compare/v1.0.2...v1.1.0) (2020-10-06)
+
+
+### Bug Fixes
+
+* 🐛 package.json dependency ([4534a48](https://github.com/suin/runspace/commit/4534a483dfb7eecd0d94bc9078603823611964f6))
+
+
+### Features
+
+* 🎸 add Space.waitMessage() ([73b147f](https://github.com/suin/runspace/commit/73b147f2f0ac3d24602a74ed06df00c7321c5c96))
+
 ## [1.0.2](https://github.com/suin/runspace/compare/v1.0.1...v1.0.2) (2020-10-06)
 
 
