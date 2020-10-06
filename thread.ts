@@ -1,4 +1,5 @@
 import { isObject } from "@suin/is-object";
+import path from "path";
 import { Worker } from "worker_threads";
 import { createEventEmitter } from "./eventEmitter";
 import {
@@ -19,7 +20,7 @@ export class ThreadSpace implements Space {
   #isOnline = false;
 
   constructor({ filename }: { readonly filename: string }) {
-    this.#filename = filename;
+    this.#filename = path.resolve(filename);
   }
 
   get isRunning(): boolean {

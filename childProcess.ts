@@ -1,5 +1,6 @@
 import { isObject } from "@suin/is-object";
 import { ChildProcess, fork, Serializable } from "child_process";
+import path from "path";
 import { createEventEmitter } from "./eventEmitter";
 import {
   ErrorListener,
@@ -18,7 +19,7 @@ export class ChildProcessSpace implements Space {
   #worker?: ChildProcess;
 
   constructor({ filename }: { readonly filename: string }) {
-    this.#filename = filename;
+    this.#filename = path.resolve(filename);
   }
 
   get isRunning(): boolean {
