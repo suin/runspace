@@ -1,27 +1,44 @@
 import { Serializable } from "child_process";
+import { Env } from "./childProcess";
 import { SystemMessageContainer } from "./systemMessage";
 
-const { RUNSPACE_FILENAME: filename } = process.env;
-hideEnvironmentVariablesFromUntrustedProgram();
+startWorker({ process });
 
-process.on("uncaughtException", (error: unknown) =>
-  process.send!(
-    SystemMessageContainer.error(convertErrorLikeToSerializable(error))
-  )
-);
+function startWorker({
+  process,
+}: {
+  readonly process: Pick<NodeJS.Process, "env" | "on" | "send">;
+}): void {
+  if (!Env.isEnv(process.env)) {
+    throw new Error(`Given environment variables don't satisfy Env interface`);
+  }
 
-process.on("unhandledRejection", (reason: unknown) =>
-  process.send!(
-    SystemMessageContainer.unhandledRejection(
-      convertErrorLikeToSerializable(reason)
+  if (!processSendIsCallable(process)) {
+    throw new Error(`The process.end must be callable`);
+  }
+
+  const filename = Env.getFilename(process.env);
+  hideEnvironmentVariablesFromUntrustedProgram(process.env);
+
+  process.on("uncaughtException", (error) =>
+    process.send(
+      SystemMessageContainer.error(convertErrorLikeToSerializable(error))
     )
-  )
-);
+  );
 
-require(filename!);
+  process.on("unhandledRejection", (reason) =>
+    process.send(
+      SystemMessageContainer.unhandledRejection(
+        convertErrorLikeToSerializable(reason)
+      )
+    )
+  );
 
-function hideEnvironmentVariablesFromUntrustedProgram() {
-  delete process.env.RUNSPACE_FILENAME;
+  require(filename);
+}
+
+function hideEnvironmentVariablesFromUntrustedProgram(env: Env) {
+  Env.dropVariables(env);
 }
 
 function convertErrorLikeToSerializable(errorLike: unknown): Serializable {
@@ -31,4 +48,10 @@ function convertErrorLikeToSerializable(errorLike: unknown): Serializable {
   } else {
     return errorLike as Serializable;
   }
+}
+
+function processSendIsCallable(
+  process: Pick<NodeJS.Process, "send">
+): process is Required<Pick<NodeJS.Process, "send">> {
+  return typeof process.send === "function";
 }

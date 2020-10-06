@@ -34,9 +34,8 @@ export class ChildProcessSpace implements Space {
   }
 
   async start(): Promise<void> {
-    this.#worker = fork(__dirname + "/childProcess.worker.js", [], {
-      env: { RUNSPACE_FILENAME: this.#filename },
-    })
+    const env: Env = { RUNSPACE_FILENAME: this.#filename };
+    this.#worker = fork(__dirname + "/childProcess.worker.js", [], { env })
       .on("message", this.handleMessage.bind(this))
       .on("exit", () => {
         this.#worker = undefined;
@@ -92,3 +91,20 @@ const isError = (value: unknown): value is Error =>
   typeof value.name === "string" &&
   typeof value.message === "string" &&
   (typeof value.stack === "string" || value.stack === undefined);
+
+export type Env = {
+  readonly RUNSPACE_FILENAME: string;
+};
+
+export const Env = {
+  isEnv: (env: unknown): env is Env =>
+    isObject<Env>(env) && typeof env.RUNSPACE_FILENAME === "string",
+
+  dropVariables: (env: Partial<Writable<Env>>): void => {
+    delete env.RUNSPACE_FILENAME;
+  },
+
+  getFilename: (env: Env): string => env.RUNSPACE_FILENAME,
+};
+
+type Writable<T> = { -readonly [K in keyof T]: T[K] };
