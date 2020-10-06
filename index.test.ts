@@ -1,5 +1,6 @@
 import { ChildProcessSpace, Space, ThreadSpace } from ".";
 import * as fixtures from "./fixtures";
+import compareVersions from "compare-versions";
 
 const types: ReadonlyArray<[CreateSpaceOptions["type"], CreateSpaceOptions]> = [
   ["thread", { type: "thread" }],
@@ -190,7 +191,17 @@ describe.each(types)("Space(%s)", (type, options) => {
 
       async function onError(error: unknown) {
         await space.waitStop();
-        expect(error).toContain("This string was thrown by");
+        if (
+          type === "thread" &&
+          compareVersions.compare(process.versions.node, "14.7.0", ">=")
+        ) {
+          // Since Node v14.7.0, the behavior of handling uncaught primitive values in worker_threads was changed.
+          // For details, see https://github.com/nodejs/node/issues/35506
+          const _error = error as Error;
+          expect(_error.message).toContain("This string was thrown by");
+        } else {
+          expect(error).toContain("This string was thrown by");
+        }
         end();
       }
     });
