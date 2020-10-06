@@ -36,12 +36,12 @@ function startWorker({
   bypassMessagesFromMainThreadToProcessEvents(parentPort, process);
 
   process.send = (message: unknown): boolean => {
-    parentPort?.postMessage(message);
+    parentPort.postMessage(message);
     return true;
   };
 
   process.on("unhandledRejection", (reason) =>
-    parentPort?.postMessage(SystemMessageContainer.unhandledRejection(reason))
+    parentPort.postMessage(SystemMessageContainer.unhandledRejection(reason))
   );
 
   require(workerData.filename);

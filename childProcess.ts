@@ -78,10 +78,7 @@ export class ChildProcessSpace implements Space {
         this.#events.emit("rejection", convertErrorLikeToError(message.reason));
         return;
       case "error":
-        this.#events.emit(
-          "error",
-          convertErrorLikeToError(message.error) as Error
-        );
+        this.#events.emit("error", convertErrorLikeToError(message.error));
         return;
     }
   }
