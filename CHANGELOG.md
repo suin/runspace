@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/suin/runspace/compare/v1.1.0...v2.0.0) (2020-10-07)
+
+
+### Features
+
+* 🎸 remove Space.start method ([cdf556c](https://github.com/suin/runspace/commit/cdf556cb250211d447692ead105c9f086eaa9ab1))
+
+
+### BREAKING CHANGES
+
+* 🧨 Space.start method is no longer avaiable
+
 # [1.1.0](https://github.com/suin/runspace/compare/v1.0.2...v1.1.0) (2020-10-06)
 
 
