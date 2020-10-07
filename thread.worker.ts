@@ -31,20 +31,28 @@ function startWorker({
     throw new Error("Given workerData is not a type WorkerData");
   }
 
-  hideWorkerDataFromUntrustedProgram(workerThreads);
-  hideParentPortFromUntrustedProgram(workerThreads);
-  bypassMessagesFromMainThreadToProcessEvents(parentPort, process);
+  parentPort.once(
+    "message",
+    ({ terminatePort }: { readonly terminatePort: MessagePort }) => {
+      process.send = (message: unknown): boolean => {
+        parentPort.postMessage(message);
+        return true;
+      };
+      process.on("unhandledRejection", (reason) =>
+        parentPort.postMessage(
+          SystemMessageContainer.unhandledRejection(reason)
+        )
+      );
+      bypassMessagesFromMainThreadToProcessEvents(
+        { terminatePort, parentPort },
+        process
+      );
+      hideWorkerDataFromUntrustedProgram(workerThreads);
+      hideParentPortFromUntrustedProgram(workerThreads);
 
-  process.send = (message: unknown): boolean => {
-    parentPort.postMessage(message);
-    return true;
-  };
-
-  process.on("unhandledRejection", (reason) =>
-    parentPort.postMessage(SystemMessageContainer.unhandledRejection(reason))
+      require(workerData.filename);
+    }
   );
-
-  require(workerData.filename);
 }
 
 function hideWorkerDataFromUntrustedProgram(module: {
@@ -60,7 +68,13 @@ function hideParentPortFromUntrustedProgram(module: {
 }
 
 function bypassMessagesFromMainThreadToProcessEvents(
-  parentPort: Pick<MessagePort, "on" | "off">,
+  {
+    terminatePort,
+    parentPort,
+  }: {
+    readonly terminatePort: MessagePort;
+    readonly parentPort: MessagePort;
+  },
   process: NodeJS.Process
 ) {
   // This code allows the in-thread program to receive messages from the main thread by using `process.on('message')`.
@@ -95,6 +109,12 @@ function bypassMessagesFromMainThreadToProcessEvents(
       map.set(listener, bypass);
       parentPort.on("message", bypass);
     }
+    if (type === "SIGTERM") {
+      const bypass: MessageListener = () =>
+        void process.emit("SIGTERM", "SIGTERM");
+      map.set(listener, bypass);
+      terminatePort.on("message", bypass);
+    }
   }
 
   function onRemoveListener(
@@ -105,6 +125,12 @@ function bypassMessagesFromMainThreadToProcessEvents(
       const bypass = map.get(listener);
       if (bypass) {
         parentPort.off("message", bypass);
+      }
+    }
+    if (type === "SIGTERM") {
+      const bypass = map.get(listener);
+      if (bypass) {
+        terminatePort.off("message", bypass);
       }
     }
   }
