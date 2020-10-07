@@ -1,3 +1,5 @@
+import { Readable } from "stream";
+
 export { ThreadSpace } from "./thread";
 export { ChildProcessSpace } from "./childProcess";
 
@@ -6,6 +8,8 @@ export interface Space {
    * Returns true if this space is running.
    */
   readonly isRunning: boolean;
+
+  readonly stdout: Readable;
 
   /**
    * Waits for that the worker has started.
@@ -41,7 +45,9 @@ export interface Space {
    * The `rejection` event is emitted when the program inside this space occurs an unhandled promise rejection.
    */
   on(type: "message", messageListener: MessageListener): this;
+
   on(type: "error", errorListener: ErrorListener): this;
+
   on(type: "rejection", rejectionListener: RejectionListener): this;
 }
 

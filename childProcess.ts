@@ -1,6 +1,7 @@
 import { isObject } from "@suin/is-object";
 import { ChildProcess, fork, Serializable } from "child_process";
 import path from "path";
+import { Readable } from "stream";
 import { EventEmitter } from "./events";
 import {
   ErrorListener,
@@ -23,7 +24,7 @@ export class ChildProcessSpace implements Space {
 
   constructor({ filename }: { readonly filename: string }) {
     const env: Env = { RUNSPACE_FILENAME: path.resolve(filename) };
-    this.#worker = fork(workerFile, [], { env })
+    this.#worker = fork(workerFile, [], { env, stdio: "pipe" })
       .on("message", this.onWorkerMessage.bind(this))
       .on("exit", this.onWorkerExit.bind(this));
     this.#isRunning = true;
@@ -31,6 +32,10 @@ export class ChildProcessSpace implements Space {
 
   get isRunning(): boolean {
     return this.#isRunning;
+  }
+
+  get stdout(): Readable {
+    return this.#worker.stdout!;
   }
 
   async waitStart(): Promise<void> {

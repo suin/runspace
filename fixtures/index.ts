@@ -4,6 +4,7 @@ export const sendsHello = "./fixtures/sendsHello.js";
 export const sendsHelloIn500milliseconds =
   "./fixtures/sendsHelloIn500milliseconds.js";
 export const sendsOneTwoThree = "./fixtures/sendsOneTwoThree.js";
+export const stdoutHello = "./fixtures/stdoutHello.js";
 export const stopsImmediately = "./fixtures/stopsImmediately.js";
 export const stopsIn500milliseconds = "./fixtures/stopsIn500milliseconds.js";
 export const stopsNever = "./fixtures/stopsNever.js";
