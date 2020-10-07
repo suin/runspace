@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/suin/runspace/compare/v2.1.0...v2.2.0) (2020-10-07)
+
+
+### Features
+
+* 🎸 graceful shutdown support ([1751668](https://github.com/suin/runspace/commit/175166851e5843a0cea09c3d441d2293f9615216))
+
 # [2.1.0](https://github.com/suin/runspace/compare/v2.0.0...v2.1.0) (2020-10-07)
 
 
