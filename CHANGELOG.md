@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/suin/runspace/compare/v2.0.0...v2.1.0) (2020-10-07)
+
+
+### Features
+
+* 🎸 add Space.stdout ([12b5465](https://github.com/suin/runspace/commit/12b54651d4ce243b361d617bd3178199672c3b01))
+
 # [2.0.0](https://github.com/suin/runspace/compare/v1.1.0...v2.0.0) (2020-10-07)
 
 
