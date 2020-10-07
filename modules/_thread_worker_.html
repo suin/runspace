@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;thread.worker&quot; | @suin/runspace - v2.1.0</title>
-	<meta name="description" content="Documentation for @suin/runspace - v2.1.0">
+	<title>&quot;thread.worker&quot; | @suin/runspace - v2.2.0</title>
+	<meta name="description" content="Documentation for @suin/runspace - v2.2.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@suin/runspace - v2.1.0</a>
+					<a href="../index.html" class="title">@suin/runspace - v2.2.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -88,19 +88,27 @@
 					<a name="bypassmessagesfrommainthreadtoprocessevents" class="tsd-anchor"></a>
 					<h3>bypass<wbr>Messages<wbr>From<wbr>Main<wbr>Thread<wbr>ToProcess<wbr>Events</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">bypass<wbr>Messages<wbr>From<wbr>Main<wbr>Thread<wbr>ToProcess<wbr>Events<span class="tsd-signature-symbol">(</span>parentPort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MessagePort</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"on"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"off"</span><span class="tsd-signature-symbol">&gt;</span>, process<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Process</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">bypass<wbr>Messages<wbr>From<wbr>Main<wbr>Thread<wbr>ToProcess<wbr>Events<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>parentPort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MessagePort</span><span class="tsd-signature-symbol">; </span>terminatePort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MessagePort</span><span class="tsd-signature-symbol"> }</span>, process<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Process</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.1.0/thread.worker.ts#L62">thread.worker.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.worker.ts#L70">thread.worker.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>parentPort: <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MessagePort</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"on"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"off"</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>parentPort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MessagePort</span><span class="tsd-signature-symbol">; </span>terminatePort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MessagePort</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>parent<wbr>Port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MessagePort</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>terminate<wbr>Port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MessagePort</span></h5>
+										</li>
+									</ul>
 								</li>
 								<li>
 									<h5>process: <span class="tsd-signature-type">Process</span></h5>
@@ -120,7 +128,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.1.0/thread.worker.ts#L56">thread.worker.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.worker.ts#L64">thread.worker.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -148,7 +156,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.1.0/thread.worker.ts#L50">thread.worker.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.worker.ts#L58">thread.worker.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -176,7 +184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.1.0/thread.worker.ts#L9">thread.worker.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.worker.ts#L9">thread.worker.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
