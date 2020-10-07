@@ -1,5 +1,6 @@
 import { isObject } from "@suin/is-object";
 import path from "path";
+import { Readable } from "stream";
 import { Worker } from "worker_threads";
 import { EventEmitter } from "./events";
 import {
@@ -32,6 +33,10 @@ export class ThreadSpace implements Space {
 
   get isRunning(): boolean {
     return this.#isOnline;
+  }
+
+  get stdout(): Readable {
+    return this.#worker.stdout;
   }
 
   waitStart(): Promise<void> {

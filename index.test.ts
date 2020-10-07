@@ -1,6 +1,7 @@
+import compareVersions from "compare-versions";
+import { PassThrough } from "stream";
 import { ChildProcessSpace, Space, ThreadSpace } from ".";
 import * as fixtures from "./fixtures";
-import compareVersions from "compare-versions";
 
 const types: ReadonlyArray<[CreateSpaceOptions["type"], CreateSpaceOptions]> = [
   ["thread", { type: "thread" }],
@@ -25,6 +26,22 @@ type ChildProcessSpaceOptions = {
 };
 
 describe.each(types)("Space(%s)", (type, options) => {
+  describe("stdout", () => {
+    it("represents space's stdout", async () => {
+      const stdout = new PassThrough();
+      const space = createSpace(fixtures.stdoutHello, options);
+      space.stdout.unpipe(process.stdout);
+      space.stdout.pipe(stdout);
+      await space.waitStart();
+      await space.waitStop();
+      let output = "";
+      for await (const chunk of stdout) {
+        output += chunk;
+      }
+      expect(output).toBe("Hello");
+    });
+  });
+
   describe("stop", () => {
     it("stops the program", async () => {
       const space = createSpace(fixtures.stopsNever, options);
