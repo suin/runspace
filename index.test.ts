@@ -73,6 +73,23 @@ describe.each(types)("Space(%s)", (type, options) => {
       await space.stop();
       expect(space.isRunning).toBe(false);
     });
+
+    it("sends SIGTERM to the space", async (end) => {
+      const space = createSpace(fixtures.sendsByeOnSIGTERM, options);
+      await space.waitMessage((message) => message === "Ready");
+      await Promise.all([
+        space.stop(),
+        space.waitMessage((message) => message === "Bye"),
+      ]);
+      end();
+    });
+
+    it("sends SIGKILL to the space or forcibly terminates the space after 10 seconds", async (end) => {
+      const space = createSpace(fixtures.stopsNeverIgnoreSIGTERM, options);
+      await space.waitMessage((message) => message === "Ready");
+      await space.stop();
+      end();
+    }, 11000);
   });
 
   describe("waitStop", () => {

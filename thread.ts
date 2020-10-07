@@ -1,7 +1,7 @@
 import { isObject } from "@suin/is-object";
 import path from "path";
 import { Readable } from "stream";
-import { Worker } from "worker_threads";
+import { Worker, MessageChannel } from "worker_threads";
 import { EventEmitter } from "./events";
 import {
   ErrorListener,
@@ -19,6 +19,7 @@ const workerFile = path.join(__dirname, "thread.worker.js");
 
 export class ThreadSpace implements Space {
   readonly #worker: Worker;
+  readonly #terminateChannel = new MessageChannel();
   readonly #events = new EventEmitter();
   #isOnline = false;
 
@@ -52,7 +53,9 @@ export class ThreadSpace implements Space {
   }
 
   async stop(): Promise<void> {
-    await this.#worker.terminate();
+    this.#terminateChannel.port1.postMessage(undefined);
+    const timeoutKill = setTimeout(() => this.#worker.terminate(), 10000);
+    return this.waitStop().then(() => clearTimeout(timeoutKill));
   }
 
   waitStop(): Promise<void> {
@@ -74,6 +77,8 @@ export class ThreadSpace implements Space {
 
   private onWorkerOnline(): void {
     this.#isOnline = true;
+    const terminatePort = this.#terminateChannel.port2;
+    this.#worker.postMessage({ terminatePort }, [terminatePort]);
   }
 
   private onWorkerMessage(message: unknown): void {

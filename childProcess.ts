@@ -54,8 +54,9 @@ export class ChildProcessSpace implements Space {
     if (!this.isRunning) {
       return;
     }
-    this.#worker.kill();
-    return this.waitStop();
+    this.#worker.kill("SIGTERM");
+    const timeoutKill = setTimeout(() => this.#worker.kill("SIGKILL"), 10000);
+    return this.waitStop().then(() => clearTimeout(timeoutKill));
   }
 
   waitStop(): Promise<void> {
