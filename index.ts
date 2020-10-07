@@ -8,19 +8,9 @@ export interface Space {
   readonly isRunning: boolean;
 
   /**
-   * Start this space.
+   * Waits for that the worker has started.
    */
-  start(): Promise<void>;
-
-  /**
-   * Stops this space.
-   */
-  stop(): Promise<void>;
-
-  /**
-   * Waits for that the program inside this space stops.
-   */
-  waitStop(): Promise<void>;
+  waitStart(): Promise<void>;
 
   /**
    * Sends a message to the program inside this space.
@@ -32,6 +22,16 @@ export interface Space {
    * Returns a promise object that resolves when the given predicate returns true.
    */
   waitMessage(predicate: WaitMessagePredicate): Promise<void>;
+
+  /**
+   * Stops this space.
+   */
+  stop(): Promise<void>;
+
+  /**
+   * Waits for that the program inside this space stops.
+   */
+  waitStop(): Promise<void>;
 
   /**
    * The `message` event is emitted when the program inside this space sends a message via `process.send()`.

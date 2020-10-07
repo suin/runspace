@@ -7,7 +7,7 @@ describe("thread.worker.js", () => {
       filename: fixtures.threadAccessWorkerData,
     });
     space.on("message", onMessage);
-    await space.start();
+    await space.waitStart();
 
     async function onMessage(workerData: unknown) {
       await space.waitStop();
@@ -21,7 +21,7 @@ describe("thread.worker.js", () => {
       filename: fixtures.threadAccessParentPort,
     });
     space.on("message", onMessage);
-    await space.start();
+    await space.waitStart();
 
     async function onMessage(isParentPortNull: unknown) {
       await space.waitStop();

@@ -1,7 +1,7 @@
 import { isObject } from "@suin/is-object";
 import { ChildProcess, fork, Serializable } from "child_process";
 import path from "path";
-import { createEventEmitter, waitMessage } from "./eventEmitter";
+import { EventEmitter } from "./events";
 import {
   ErrorListener,
   MessageListener,
@@ -14,17 +14,49 @@ import {
   SystemMessageContainer,
 } from "./systemMessage";
 
+const workerFile = path.join(__dirname, "childProcess.worker.js");
+
 export class ChildProcessSpace implements Space {
-  readonly #filename: string;
-  readonly #events = createEventEmitter();
-  #worker?: ChildProcess;
+  readonly #worker: ChildProcess;
+  readonly #events = new EventEmitter();
+  #isRunning: boolean;
 
   constructor({ filename }: { readonly filename: string }) {
-    this.#filename = path.resolve(filename);
+    const env: Env = { RUNSPACE_FILENAME: path.resolve(filename) };
+    this.#worker = fork(workerFile, [], { env })
+      .on("message", this.onWorkerMessage.bind(this))
+      .on("exit", this.onWorkerExit.bind(this));
+    this.#isRunning = true;
   }
 
   get isRunning(): boolean {
-    return this.#worker !== undefined;
+    return this.#isRunning;
+  }
+
+  async waitStart(): Promise<void> {
+    return undefined;
+  }
+
+  send(message: unknown): void {
+    this.#worker.send(message as Serializable);
+  }
+
+  waitMessage(predicate: WaitMessagePredicate): Promise<void> {
+    return this.#events.waitMessage(predicate);
+  }
+
+  async stop(): Promise<void> {
+    if (!this.isRunning) {
+      return;
+    }
+    this.#worker.kill();
+    return this.waitStop();
+  }
+
+  waitStop(): Promise<void> {
+    return this.isRunning
+      ? new Promise((resolve) => this.#worker.once("exit", () => resolve()))
+      : Promise.resolve();
   }
 
   on(type: "message", messageListener: MessageListener): this;
@@ -38,43 +70,16 @@ export class ChildProcessSpace implements Space {
     return this;
   }
 
-  async start(): Promise<void> {
-    const env: Env = { RUNSPACE_FILENAME: this.#filename };
-    this.#worker = fork(__dirname + "/childProcess.worker.js", [], { env })
-      .on("message", this.handleMessage.bind(this))
-      .on("exit", () => {
-        this.#worker = undefined;
-      });
-  }
-
-  async stop(): Promise<void> {
-    if (!this.isRunning) {
-      return;
-    }
-    this.#worker?.kill();
-    return this.waitStop();
-  }
-
-  waitStop(): Promise<void> {
-    return this.isRunning
-      ? new Promise((resolve) => this.#worker?.once("exit", () => resolve()))
-      : Promise.resolve();
-  }
-
-  send(message: unknown): void {
-    this.#worker?.send(message as Serializable);
-  }
-
-  waitMessage(predicate: WaitMessagePredicate): Promise<void> {
-    return waitMessage(this.#events, predicate);
-  }
-
-  private handleMessage(message: Serializable): void {
+  private onWorkerMessage(message: Serializable): void {
     if (isSystemMessageContainer(message)) {
       this.handleSystemMessage(message);
       return;
     }
     this.#events.emit("message", message);
+  }
+
+  private onWorkerExit(): void {
+    this.#isRunning = false;
   }
 
   private handleSystemMessage(
@@ -101,10 +106,16 @@ const isError = (value: unknown): value is Error =>
   typeof value.message === "string" &&
   (typeof value.stack === "string" || value.stack === undefined);
 
+/**
+ * @internal
+ */
 export type Env = {
   readonly RUNSPACE_FILENAME: string;
 };
 
+/**
+ * @internal
+ */
 export const Env = {
   isEnv: (env: unknown): env is Env =>
     isObject<Env>(env) && typeof env.RUNSPACE_FILENAME === "string",
