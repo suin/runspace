@@ -1,9 +1,15 @@
 import { isObject } from "@suin/is-object";
 
+/**
+ * @internal
+ */
 export type SystemMessageContainer = {
   readonly __runspace__: SystemMessage;
 };
 
+/**
+ * @internal
+ */
 export const SystemMessageContainer = {
   error(error: unknown): SystemMessageContainer {
     return {
@@ -29,6 +35,9 @@ type UnhandledRejectionMessage = {
   readonly reason: unknown;
 };
 
+/**
+ * @internal
+ */
 export const isSystemMessageContainer = (
   message: unknown
 ): message is SystemMessageContainer =>

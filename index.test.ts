@@ -28,7 +28,7 @@ describe.each(types)("Space(%s)", (type, options) => {
   describe("stop", () => {
     it("stops the program", async () => {
       const space = createSpace(fixtures.stopsNever, options);
-      await space.start();
+      await space.waitStart();
       expect(space.isRunning).toBe(true);
       await space.stop();
       expect(space.isRunning).toBe(false);
@@ -36,7 +36,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("can be called even if the program already stopped", async () => {
       const space = createSpace(fixtures.stopsNever, options);
-      await space.start();
+      await space.waitStart();
       expect(space.isRunning).toBe(true);
       await space.stop();
       expect(space.isRunning).toBe(false);
@@ -46,7 +46,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("returns Promise<void>", async () => {
       const space = createSpace(fixtures.stopsNever, options);
-      await space.start();
+      await space.waitStart();
       const result = await space.stop();
       expect(result).toBe(undefined);
     });
@@ -61,7 +61,7 @@ describe.each(types)("Space(%s)", (type, options) => {
   describe("waitStop", () => {
     it("waits for that the immediately-stop program stops", async () => {
       const space = createSpace(fixtures.stopsImmediately, options);
-      await space.start();
+      await space.waitStart();
       expect(space.isRunning).toBe(true);
       await space.waitStop();
       expect(space.isRunning).toBe(false);
@@ -69,7 +69,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("patiently waits for that the long-lived program stops", async () => {
       const space = createSpace(fixtures.stopsIn500milliseconds, options);
-      await space.start();
+      await space.waitStart();
       expect(space.isRunning).toBe(true);
       const waitOneSecond = setTimeout(() => fail("Too fast to finish"), 1000);
       await space.waitStop();
@@ -79,7 +79,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("waits the program that has already stopped", async () => {
       const space = createSpace(fixtures.stopsImmediately, options);
-      await space.start();
+      await space.waitStart();
       expect(space.isRunning).toBe(true);
       await space.waitStop();
       expect(space.isRunning).toBe(false);
@@ -89,7 +89,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("waits the program that has already been stopped", async () => {
       const space = createSpace(fixtures.stopsNever, options);
-      await space.start();
+      await space.waitStart();
       expect(space.isRunning).toBe(true);
       await space.stop();
       expect(space.isRunning).toBe(false);
@@ -99,7 +99,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("returns Promise<void>", async () => {
       const space = createSpace(fixtures.stopsImmediately, options);
-      await space.start();
+      await space.waitStart();
       const result = await space.waitStop();
       expect(result).toBe(undefined);
     });
@@ -118,7 +118,7 @@ describe.each(types)("Space(%s)", (type, options) => {
       shouldNotReceiveError(space);
       shouldNotReceivePromiseRejection(space);
 
-      await space.start();
+      await space.waitStart();
       space.send("hello!");
 
       async function onMessage(message: unknown) {
@@ -130,7 +130,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("returns void", async () => {
       const space = createSpace(fixtures.echoMessage, options);
-      await space.start();
+      await space.waitStart();
       const result = space.send("hello!");
       expect(result).toBe(undefined);
     });
@@ -143,7 +143,7 @@ describe.each(types)("Space(%s)", (type, options) => {
         fixtures.sendsHelloIn500milliseconds,
         options
       ).on("message", () => void (messageReceived = true));
-      await space.start();
+      await space.waitStart();
       await space.waitMessage((message) => message === "Hello");
       await space.stop();
       expect(messageReceived).toBe(true);
@@ -151,7 +151,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("returns Promise<void>", async () => {
       const space = createSpace(fixtures.sendsHello, options);
-      await space.start();
+      await space.waitStart();
       const result = await space.waitMessage((message) => message === "Hello");
       expect(result).toBe(undefined);
     });
@@ -160,7 +160,7 @@ describe.each(types)("Space(%s)", (type, options) => {
       let receivedMessageCount = 0;
       const space = createSpace(fixtures.sendsOneTwoThree, options);
       space.on("message", () => void receivedMessageCount++);
-      await space.start();
+      await space.waitStart();
       await Promise.all([
         space.waitMessage((message) => message === 1),
         space.waitMessage((message) => message === 2),
@@ -171,7 +171,7 @@ describe.each(types)("Space(%s)", (type, options) => {
 
     it("can be used for request-response communication", async () => {
       const space = createSpace(fixtures.evaluatesMessage, options);
-      await space.start();
+      await space.waitStart();
       space.send(`1 + 1`);
       await space.waitMessage((result) => result === 2);
       space.send(`1 + 2`);
@@ -188,7 +188,7 @@ describe.each(types)("Space(%s)", (type, options) => {
       space.on("message", onMessage);
       shouldNotReceiveError(space);
       shouldNotReceivePromiseRejection(space);
-      await space.start();
+      await space.waitStart();
 
       async function onMessage(message: unknown) {
         await space.waitStop();
@@ -205,7 +205,7 @@ describe.each(types)("Space(%s)", (type, options) => {
         new Promise((resolve) => space.on("message", resolve)),
         new Promise((resolve) => space.on("message", resolve)),
       ];
-      await space.start();
+      await space.waitStart();
       const twoMessages = await Promise.all(twoMessagesPromise);
       expect(twoMessages).toEqual(["Hello", "Hello"]);
     });
@@ -217,7 +217,7 @@ describe.each(types)("Space(%s)", (type, options) => {
       space.on("error", onError);
       shouldNotReceiveMessage(space);
       shouldNotReceivePromiseRejection(space);
-      await space.start();
+      await space.waitStart();
 
       async function onError(error: unknown) {
         await space.waitStop();
@@ -233,7 +233,7 @@ describe.each(types)("Space(%s)", (type, options) => {
       space.on("error", onError);
       shouldNotReceiveMessage(space);
       shouldNotReceivePromiseRejection(space);
-      await space.start();
+      await space.waitStart();
 
       async function onError(error: unknown) {
         await space.waitStop();
@@ -257,7 +257,7 @@ describe.each(types)("Space(%s)", (type, options) => {
       space.on("error", onError);
       shouldNotReceiveMessage(space);
       shouldNotReceivePromiseRejection(space);
-      await space.start();
+      await space.waitStart();
 
       async function onError(error: unknown) {
         await space.waitStop();
@@ -275,7 +275,7 @@ describe.each(types)("Space(%s)", (type, options) => {
       space.on("rejection", onRejection);
       shouldNotReceiveMessage(space);
       shouldNotReceiveError(space);
-      await space.start();
+      await space.waitStart();
 
       async function onRejection(reason: unknown) {
         await space.waitStop();
@@ -291,7 +291,7 @@ describe.each(types)("Space(%s)", (type, options) => {
       space.on("rejection", onRejection);
       shouldNotReceiveMessage(space);
       shouldNotReceiveError(space);
-      await space.start();
+      await space.waitStart();
 
       async function onRejection(reason: unknown) {
         await space.waitStop();
