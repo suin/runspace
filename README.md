@@ -25,7 +25,7 @@ const { ThreadSpace, ChildProcessSpace } = require("@suin/runspace");
     .on("error", (error) => console.error(error))
     .on("rejection", (reason) => console.error(reason));
 
-  await space.start();
+  await space.waitStart();
   space.send("Hello");
   await space.waitStop();
 })();
@@ -60,7 +60,7 @@ const fetch = require("node-fetch");
 
 (async () => {
   const space = new ThreadSpace({ filename: "./target.js" });
-  await space.start();
+  await space.waitStart();
   await space.waitMessage((message) => message === "HTTP_SERVER_READY");
   const res = await fetch("http://localhost:8000");
   const text = await res.text();
