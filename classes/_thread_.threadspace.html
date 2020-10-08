@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ThreadSpace | @suin/runspace - v2.2.0</title>
-	<meta name="description" content="Documentation for @suin/runspace - v2.2.0">
+	<title>ThreadSpace | @suin/runspace - v2.2.1</title>
+	<meta name="description" content="Documentation for @suin/runspace - v2.2.1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@suin/runspace - v2.2.0</a>
+					<a href="../index.html" class="title">@suin/runspace - v2.2.1</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -98,6 +98,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#_events" class="tsd-kind-icon">#events</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#_isonline" class="tsd-kind-icon">#is<wbr>Online</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#_rejectionchannel" class="tsd-kind-icon">#rejection<wbr>Channel</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#_terminatechannel" class="tsd-kind-icon">#terminate<wbr>Channel</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#_worker" class="tsd-kind-icon">#worker</a></li>
 							</ul>
@@ -112,13 +113,14 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#handlesystemmessage" class="tsd-kind-icon">handle<wbr>System<wbr>Message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_thread_.threadspace.html#on" class="tsd-kind-icon">on</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#onworkererror" class="tsd-kind-icon">on<wbr>Worker<wbr>Error</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#onworkerexit" class="tsd-kind-icon">on<wbr>Worker<wbr>Exit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#onworkermessage" class="tsd-kind-icon">on<wbr>Worker<wbr>Message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#onworkeronline" class="tsd-kind-icon">on<wbr>Worker<wbr>Online</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#onworkerrejection" class="tsd-kind-icon">on<wbr>Worker<wbr>Rejection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_thread_.threadspace.html#send" class="tsd-kind-icon">send</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_thread_.threadspace.html#sendsystemports" class="tsd-kind-icon">send<wbr>System<wbr>Ports</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_thread_.threadspace.html#stop" class="tsd-kind-icon">stop</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_thread_.threadspace.html#waitmessage" class="tsd-kind-icon">wait<wbr>Message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_thread_.threadspace.html#waitstart" class="tsd-kind-icon">wait<wbr>Start</a></li>
@@ -140,7 +142,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L24">thread.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L21">thread.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -167,7 +169,7 @@
 					<div class="tsd-signature tsd-kind-icon">#events<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol"> = new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L23">thread.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L20">thread.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,7 +179,17 @@
 					<div class="tsd-signature tsd-kind-icon">#is<wbr>Online<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L24">thread.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L21">thread.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_rejectionchannel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagPrivate">Private</span> #rejection<wbr>Channel</h3>
+					<div class="tsd-signature tsd-kind-icon">#rejection<wbr>Channel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">MessageChannel</span><span class="tsd-signature-symbol"> = new MessageChannel()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L19">thread.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">#terminate<wbr>Channel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">MessageChannel</span><span class="tsd-signature-symbol"> = new MessageChannel()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L22">thread.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L18">thread.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">#worker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Worker</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L21">thread.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L17">thread.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -214,7 +226,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L35">thread.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L36">thread.ts:36</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -231,7 +243,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L39">thread.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L40">thread.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span></h4>
@@ -241,29 +253,6 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="handlesystemmessage" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> handle<wbr>System<wbr>Message</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">handle<wbr>System<wbr>Message<span class="tsd-signature-symbol">(</span>systemMessageContainer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SystemMessageContainer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L100">thread.ts:100</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>systemMessageContainer: <span class="tsd-signature-type">SystemMessageContainer</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="on" class="tsd-anchor"></a>
 					<h3>on</h3>
@@ -277,7 +266,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L67">thread.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L68">thread.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -295,7 +284,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L68">thread.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L69">thread.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -313,7 +302,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L69">thread.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L70">thread.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -339,7 +328,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L92">thread.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L97">thread.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -362,7 +351,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L96">thread.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L105">thread.ts:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -379,7 +368,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L84">thread.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L93">thread.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -402,9 +391,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L78">thread.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L79">thread.ts:79</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="onworkerrejection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> on<wbr>Worker<wbr>Rejection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Worker<wbr>Rejection<span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L101">thread.ts:101</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>reason: <span class="tsd-signature-type">unknown</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -420,7 +432,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#send">send</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L47">thread.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L48">thread.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -429,6 +441,23 @@
 									<h5>message: <span class="tsd-signature-type">unknown</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="sendsystemports" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> send<wbr>System<wbr>Ports</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">send<wbr>System<wbr>Ports<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L84">thread.ts:84</a></li>
+								</ul>
+							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -444,7 +473,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#stop">stop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L55">thread.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L56">thread.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -462,7 +491,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#waitmessage">waitMessage</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L51">thread.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L52">thread.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -486,7 +515,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#waitstart">waitStart</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L43">thread.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L44">thread.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -504,7 +533,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_index_.space.html">Space</a>.<a href="../interfaces/_index_.space.html#waitstop">waitStop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.0/thread.ts#L61">thread.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/suin/runspace/blob/v2.2.1/thread.ts#L62">thread.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -562,6 +591,9 @@
 								<a href="_thread_.threadspace.html#_isonline" class="tsd-kind-icon">#is<wbr>Online</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_thread_.threadspace.html#_rejectionchannel" class="tsd-kind-icon">#rejection<wbr>Channel</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_thread_.threadspace.html#_terminatechannel" class="tsd-kind-icon">#terminate<wbr>Channel</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -572,9 +604,6 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_thread_.threadspace.html#stdout" class="tsd-kind-icon">stdout</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_thread_.threadspace.html#handlesystemmessage" class="tsd-kind-icon">handle<wbr>System<wbr>Message</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_thread_.threadspace.html#on" class="tsd-kind-icon">on</a>
@@ -591,8 +620,14 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_thread_.threadspace.html#onworkeronline" class="tsd-kind-icon">on<wbr>Worker<wbr>Online</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_thread_.threadspace.html#onworkerrejection" class="tsd-kind-icon">on<wbr>Worker<wbr>Rejection</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_thread_.threadspace.html#send" class="tsd-kind-icon">send</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_thread_.threadspace.html#sendsystemports" class="tsd-kind-icon">send<wbr>System<wbr>Ports</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_thread_.threadspace.html#stop" class="tsd-kind-icon">stop</a>
