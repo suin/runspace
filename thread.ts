@@ -1,7 +1,7 @@
 import { isObject } from "@suin/is-object";
 import path from "path";
 import { Readable } from "stream";
-import { Worker, MessageChannel } from "worker_threads";
+import { MessageChannel, Worker } from "worker_threads";
 import { EventEmitter } from "./events";
 import {
   ErrorListener,
@@ -10,16 +10,13 @@ import {
   Space,
   WaitMessagePredicate,
 } from "./index";
-import {
-  isSystemMessageContainer,
-  SystemMessageContainer,
-} from "./systemMessage";
 
 const workerFile = path.join(__dirname, "thread.worker.js");
 
 export class ThreadSpace implements Space {
   readonly #worker: Worker;
   readonly #terminateChannel = new MessageChannel();
+  readonly #rejectionChannel = new MessageChannel();
   readonly #events = new EventEmitter();
   #isOnline = false;
 
@@ -30,6 +27,10 @@ export class ThreadSpace implements Space {
       .on("message", this.onWorkerMessage.bind(this))
       .on("error", this.onWorkerError.bind(this))
       .on("exit", this.onWorkerExit.bind(this));
+    this.#rejectionChannel.port1.on(
+      "message",
+      this.onWorkerRejection.bind(this)
+    );
   }
 
   get isRunning(): boolean {
@@ -77,15 +78,19 @@ export class ThreadSpace implements Space {
 
   private onWorkerOnline(): void {
     this.#isOnline = true;
+    this.sendSystemPorts();
+  }
+
+  private sendSystemPorts(): void {
     const terminatePort = this.#terminateChannel.port2;
-    this.#worker.postMessage({ terminatePort }, [terminatePort]);
+    const rejectionPort = this.#rejectionChannel.port2;
+    this.#worker.postMessage({ terminatePort, rejectionPort }, [
+      terminatePort,
+      rejectionPort,
+    ]);
   }
 
   private onWorkerMessage(message: unknown): void {
-    if (isSystemMessageContainer(message)) {
-      this.handleSystemMessage(message);
-      return;
-    }
     this.#events.emit("message", message);
   }
 
@@ -93,20 +98,12 @@ export class ThreadSpace implements Space {
     this.#events.emit("error", error);
   }
 
-  private onWorkerExit(): void {
-    this.#isOnline = false;
+  private onWorkerRejection(reason: unknown): void {
+    this.#events.emit("rejection", reason);
   }
 
-  private handleSystemMessage(
-    systemMessageContainer: SystemMessageContainer
-  ): void {
-    const data = systemMessageContainer.__runspace__;
-    if (data.type === "unhandledRejection") {
-      this.#events.emit("rejection", data.reason);
-      return;
-    } else {
-      // todo
-    }
+  private onWorkerExit(): void {
+    this.#isOnline = false;
   }
 }
 

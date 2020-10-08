@@ -1,7 +1,6 @@
 import { isObject } from "@suin/is-object";
 import workerThreads, { MessagePort } from "worker_threads";
 import { MessageListener } from "./index";
-import { SystemMessageContainer } from "./systemMessage";
 import { WorkerData } from "./thread";
 
 startWorker({ workerThreads, process });
@@ -33,20 +32,25 @@ function startWorker({
 
   parentPort.once(
     "message",
-    ({ terminatePort }: { readonly terminatePort: MessagePort }) => {
+    ({
+      terminatePort,
+      rejectionPort,
+    }: {
+      readonly terminatePort: MessagePort;
+      readonly rejectionPort: MessagePort;
+    }) => {
       process.send = (message: unknown): boolean => {
         parentPort.postMessage(message);
         return true;
       };
       process.on("unhandledRejection", (reason) =>
-        parentPort.postMessage(
-          SystemMessageContainer.unhandledRejection(reason)
-        )
+        rejectionPort.postMessage(reason)
       );
-      bypassMessagesFromMainThreadToProcessEvents(
-        { terminatePort, parentPort },
-        process
-      );
+      bypassMessagesFromMainThreadToProcessEvents({
+        terminatePort,
+        parentPort,
+        process,
+      });
       hideWorkerDataFromUntrustedProgram(workerThreads);
       hideParentPortFromUntrustedProgram(workerThreads);
 
@@ -67,16 +71,15 @@ function hideParentPortFromUntrustedProgram(module: {
   module.parentPort = null;
 }
 
-function bypassMessagesFromMainThreadToProcessEvents(
-  {
-    terminatePort,
-    parentPort,
-  }: {
-    readonly terminatePort: MessagePort;
-    readonly parentPort: MessagePort;
-  },
-  process: NodeJS.Process
-) {
+function bypassMessagesFromMainThreadToProcessEvents({
+  terminatePort,
+  parentPort,
+  process,
+}: {
+  readonly terminatePort: MessagePort;
+  readonly parentPort: MessagePort;
+  readonly process: NodeJS.Process;
+}) {
   // This code allows the in-thread program to receive messages from the main thread by using `process.on('message')`.
   //
   // Thinking simply, we can bypass the messages with the following code, but there is a problem with this:
